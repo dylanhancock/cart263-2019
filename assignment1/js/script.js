@@ -31,6 +31,8 @@ let food = {
   size: 64,
   vx: 1,
   vy: 1,
+  minSpeed: 1,
+  maxSpeed: 2,
   color: '#55cccc'
 }
 
@@ -135,11 +137,37 @@ function displayFood() {
 function positionFood() {
   food.x = random(0,width);
   food.y = random(0,height);
-  food.vx = food.x;
-  food.vy = food.y;
+  food.vx = random(food.minSpeed,food.maxSpeed)
+  food.vy = random(food.minSpeed,food.maxSpeed)
+  // food.vx = food.x;
+  // food.vy = food.y;
 }
 
 function updateFood() {
-  food.x = food.vx++;
-  food.y = food.vy++;
+
+  let foodTop = food.y + food.size/2;
+  let foodBottom = food.y - food.size/2;
+
+  food.vx += random(-food.minSpeed,food.maxSpeed);
+  food.vy += random(-food.minSpeed,food.maxSpeed);
+
+  food.x += food.vx;
+  food.y += food.vy;
+
+  if (food.y < 0 || food.y > height) {
+      // If it touched the top or bottom, reverse its vy
+      food.vy = -food.vy;
+
+
+
+      console.log(food.vy);
+}
+
+if (food.x < 0 || food.x > width){
+
+  food.vx = -food.vx;
+}
+
+
+
 }
