@@ -50,7 +50,7 @@ function preload() {
 // Create the canvas, position the food, remove the cursor
 
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth, windowHeight);
   positionFood();
   noCursor();
 }
@@ -86,7 +86,7 @@ function updateAvatar() {
   avatar.x = mouseX;
   avatar.y = mouseY;
   // Shrink the avatar and use constrain() to keep it to reasonable bounds
-  avatar.size = constrain(avatar.size - AVATAR_SIZE_LOSS,0,avatar.maxSize);
+  avatar.size = constrain(avatar.size - AVATAR_SIZE_LOSS, 0, avatar.maxSize);
   if (avatar.size === 0) {
     avatar.active = false;
   }
@@ -98,9 +98,9 @@ function updateAvatar() {
 // Check if the distance is small enough to be an overlap of the two circles
 // If so, grow the avatar and reposition the food
 function checkCollision() {
-  let d = dist(avatar.x,avatar.y,food.x,food.y);
-  if (d < avatar.size/2 + food.size/2) {
-    avatar.size = constrain(avatar.size + AVATAR_SIZE_GAIN,0,avatar.maxSize);
+  let d = dist(avatar.x, avatar.y, food.x, food.y);
+  if (d < avatar.size / 2 + food.size / 2) {
+    avatar.size = constrain(avatar.size + AVATAR_SIZE_GAIN, 0, avatar.maxSize);
     positionFood();
   }
 }
@@ -114,7 +114,7 @@ function displayAvatar() {
   push();
   noStroke();
   fill(avatar.color);
-  ellipse(avatar.x,avatar.y,avatar.size);
+  ellipse(avatar.x, avatar.y, avatar.size);
   pop();
 }
 
@@ -127,7 +127,7 @@ function displayFood() {
   push();
   noStroke();
   fill(food.color);
-  ellipse(food.x,food.y,food.size);
+  ellipse(food.x, food.y, food.size);
   pop();
 }
 
@@ -135,38 +135,33 @@ function displayFood() {
 //
 // Set the food's position properties to random numbers within the canvas dimensions
 function positionFood() {
-  food.x = random(0,width);
-  food.y = random(0,height);
-  food.vx = random(food.minSpeed,food.maxSpeed)
-  food.vy = random(food.minSpeed,food.maxSpeed)
-  // food.vx = food.x;
-  // food.vy = food.y;
+  food.x = random(0, width);
+  food.y = random(0, height);
+  // Set a random velocity for the food to begin at
+  food.vx = random(food.minSpeed, food.maxSpeed)
+  food.vy = random(food.minSpeed, food.maxSpeed)
+
 }
-
+// updateFood()
+// update the food so that it stays moving on screen at a random velocity
 function updateFood() {
-
-  let foodTop = food.y + food.size/2;
-  let foodBottom = food.y - food.size/2;
-
-  food.vx += random(-food.minSpeed,food.maxSpeed);
-  food.vy += random(-food.minSpeed,food.maxSpeed);
-
+  // randomly change velocity of food between the minimum and maximum speed
+  food.vx += random(-food.minSpeed, food.maxSpeed);
+  food.vy += random(-food.minSpeed, food.maxSpeed);
+  // the classic update function based on velocity
   food.x += food.vx;
   food.y += food.vy;
 
+  // check if food hits the top or bottom
   if (food.y < 0 || food.y > height) {
-      // If it touched the top or bottom, reverse its vy
-      food.vy = -food.vy;
-
-
-
-      console.log(food.vy);
-}
-
-if (food.x < 0 || food.x > width){
-
-  food.vx = -food.vx;
-}
+    // If it touched the top or bottom, reverse its vy
+    food.vy = -food.vy;
+  }
+  // check if food hits either side
+  if (food.x < 0 || food.x > width) {
+    // if it touches, reverse the velocity
+    food.vx = -food.vx;
+  }
 
 
 
