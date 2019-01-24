@@ -29,6 +29,7 @@ class Food extends Agent {
     this.vx = random(this.minSpeed, this.maxSpeed);
     this.vy = random(this.minSpeed, this.maxSpeed);
 
+
 }
 
 

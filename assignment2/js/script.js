@@ -21,7 +21,7 @@ const FOOD_MAX_SIZE = 100;
 // Variables to store the two key objects
 let avatar;
 let food;
-
+let foods = [];
 
 // preload()
 //
@@ -37,10 +37,14 @@ function preload() {
 // Create the canvas, avatar, and food, disable the cursor
 
 function setup() {
-  createCanvas(windowWidth,windowHeight);
-  avatar = new Avatar(mouseX,mouseY,AVATAR_MAX_SIZE,AVATAR_SIZE_LOSS_PER_FRAME)
-  food = new Food(random(0,width),random(0,height),FOOD_MIN_SIZE,FOOD_MAX_SIZE);
-  noCursor();
+  createCanvas(windowWidth, windowHeight);
+  avatar = new Avatar(mouseX, mouseY, AVATAR_MAX_SIZE, AVATAR_SIZE_LOSS_PER_FRAME)
+  // food = new Food(random(0,width),random(0,height),FOOD_MIN_SIZE,FOOD_MAX_SIZE);
+  // noCursor();
+  for (let i = 0; i < 10; i++) {
+
+    foods.push (new Food(random(0, width), random(0, height), FOOD_MIN_SIZE, FOOD_MAX_SIZE));
+  }
 }
 
 
@@ -51,14 +55,23 @@ function setup() {
 // Display the avatar and food
 
 function draw() {
+
   background(0);
 
-  food.updateFood();
+  for (let i = 0; i < foods.length; i++) {
+
+    foods[i].updateFood();
+
+    if (avatar.collide(foods[i])) {
+      avatar.eat(foods[i]);
+    }
+
+    foods[i].display();
+  }
+
 
   avatar.update();
-  if (avatar.collide(food)) {
-    avatar.eat(food);
-  }
+
+
   avatar.display();
-  food.display();
 }
