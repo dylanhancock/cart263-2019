@@ -80,13 +80,6 @@ class Agent {
     if (!this.active) {
       return;
     }
-    var foods = [];
-    for (var i = 0; i < 10; i++) {
-
-      foods.push (new Food (random(0,width),random(0,height),FOOD_MIN_SIZE,FOOD_MAX_SIZE));
-    }
-
-
 
     // Set fill and stroke then draw an ellipse at this agent's position and with its size
     push();
