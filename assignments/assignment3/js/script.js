@@ -13,6 +13,7 @@ secrets become revealed!
 
 // A place to store the jQuery selection of all spans
 let $spans;
+//////NEW VARIABLES
 let $secret;
 let secretsFound = 0;
 
@@ -29,9 +30,10 @@ function setup() {
   $spans.on('click',spanClicked);
   // Set an interval of 500 milliseconds to update the state of the page
   setInterval(update,500);
-
+  //NEW////////////////
+  //adding secret as an accessable element
   $secret = $('.secret');
-
+///telling the program to use my secret mouseover function on mouseover
   $secret.on('mouseover', secretMouseover)
 
 
@@ -67,6 +69,12 @@ function updateSpan() {
     $(this).addClass('revealed');
   }
 }
+///NEW//////
+//My mouseover top secret function
+//adds one to the variable "number"
+//puts the secrets into a css class which makes the background a lime colpr
+//swap the text of number with the variable secretsFound
+//take the found class away from the mousover so the numbers dont pile up endlessly
 
 function secretMouseover (){
 
