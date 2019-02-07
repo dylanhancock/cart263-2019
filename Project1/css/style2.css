@@ -1,0 +1,129 @@
+/*********************************************
+
+Here is a description of any special CSS used.
+In this case it's just padding and margin to 0
+so the canvas is flush with the top left corner.
+
+**********************************************/
+
+/* body {
+  padding: 0;
+  margin: 0;
+  background-image: url("assets/images/night.jpg");
+} */
+/*
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: black;
+  background-color: grey;
+  border: none;
+  box-shadow: 10 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/* .sleeping {
+background-color: black;
+} */
+body {
+  background-color:white;
+}
+
+h1 {
+  color: black;
+}
+.sleeping{
+  width: 1250px;
+  height: 1000px;
+}
+
+.img {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.day {
+
+  background-image: url("../assets/images/day.jpg");
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+.night {
+  background-image: url("../assets/images/night.jpg");
+}
+
+#cf2 {
+  position:relative;
+  /* height:281px;
+  width:450px; */
+  margin:0 auto;
+}
+#cf2 img {
+  position:absolute;
+
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+#cf2 img.transparent {
+opacity:0;
+}
+#cf_onclick {
+cursor:pointer;
+}
+
+#heaven {
+  position:absolute;
+  background-size: cover;
+background-image: url("../assets/images/heavenwindow.png");
+z-index: 99;
+top: 300px;
+left: 500px;
+
+}
+
+#hell {
+  position:absolute;
+  background-size: cover;
+background-image: url("../assets/images/heavenwindow.png");
+z-index: 99;
+top: 300px;
+right: 500px;;
+
+}
+
+#ground {
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  background-image: url("../assets/images/earth.jpg");
+  width: 2000px;
+  height: 1000px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+
+#hell {
+  width: 100px;
+  height: 100px;
+}
