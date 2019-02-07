@@ -9,7 +9,6 @@ so the canvas is flush with the top left corner.
 body {
   padding:0;
   margin:0;
-  margin-left: 200px;
   background: black;
 
 }

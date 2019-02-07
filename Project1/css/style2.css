@@ -98,7 +98,12 @@ z-index: 99;
 top: 300px;
 left: 500px;
 
+{ transition: all .2s ease-in-out; }
+
 }
+
+#heaven:hover { transform: scale(1.5);
+ filter: saturate(800%); }
 
 #hell {
   position:absolute;
@@ -107,6 +112,31 @@ background-image: url("../assets/images/heavenwindow.png");
 z-index: 99;
 top: 300px;
 right: 500px;;
+
+}
+
+#hell:hover { transform: scale(1.5);
+filter: hue-rotate(300deg);
+
+}
+
+#hell2 {
+  font-size: 70px;
+  position:absolute;
+  background-size: cover;
+  z-index: 100;
+  top: 200px;
+  right: 460px;
+
+}
+
+#heaven2 {
+  font-size: 70px;
+  position:absolute;
+  background-size: cover;
+  z-index: 100;
+  top: 200px;
+  left: 460px;
 
 }
 

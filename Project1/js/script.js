@@ -53,7 +53,7 @@ var d = dist(playerX,playerY,preyX,preyY);
 //
 // Sets up the basic elements of the game
 function setup() {
-  createCanvas(1000,1000);
+  createCanvas(1500,500);
 
   noStroke();
 
@@ -133,6 +133,8 @@ function draw() {
 
 function chasing(){
 
+
+
 background(bg);
 
     handleInput();
@@ -145,11 +147,22 @@ background(bg);
 
     drawPrey();
     drawPlayer();
+    textSize(15);
+    fill(255,244,0);
+text("MAKE SYSIPHUS RUN UNTIL HE DIES OF EXHAUSTION", 320, 10, 1000, 500);
+text("EXHAUSTION LEVEL", 10, 80, 500, 1000);
+fill(255,0,0);
+text("DANGER", 10, 60, 500, 1000);
+fill(0,255,0);
+text("SAFE", 200, 60, 500, 1000);
+fill(255,255,255);
 
     rect (10,10,playerHealth,50);
 }
 
 function running(){
+
+
 
 background(bg);
 
@@ -164,7 +177,17 @@ background(bg);
   drawPlayer2();
 
   var d = dist(playerX,playerY,preyX,preyY);
+
+  fill(255,244,0);
+  text("RUN FROM THE BOULDER UNTIL YOU GET CRUSHED", 320, 10, 1000, 500);
+  text("BOULDER DISTANCE", 10, 80, 500, 1000);
+  fill(255,0,0);
+  text("DANGER", 10, 60, 500, 1000);
+  fill(0,255,0);
+  text("SAFE", 150, 60, 500, 1000);
+  fill(255,255,255);
   rect (10,10,d,50);
+
 }
 // handleInput()
 //
@@ -204,8 +227,8 @@ function movePlayer() {
 
   // Wrap when player goes off the canvas
 
-  playerX = constrain(playerX, 0,1000);
-  playerY = constrain(playerY, 0,1000);
+  playerX = constrain(playerX, 0,1400);
+  playerY = constrain(playerY, 0,400);
   //
   // if (playerX < 0) {
   //   playerX += width;
@@ -339,6 +362,7 @@ function drawPrey() {
 //
 // Draw the player as an ellipse with alpha based on health
 function drawPlayer() {
+  tint(255,255);
   image(boulder,playerX,playerY,playerRadius*2);
 }
 
