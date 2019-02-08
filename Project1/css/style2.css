@@ -1,0 +1,148 @@
+
+body {
+  background-color: white;
+}
+
+
+.sleeping {
+  width: 1250px;
+  height: 1000px;
+}
+
+.img {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.day {
+  background-image: url("../assets/images/day.jpg");
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+.night {
+  background-image: url("../assets/images/night.jpg");
+}
+
+#cf2 {
+  position: relative;
+  margin: 0 auto;
+}
+
+#cf2 img {
+  position: absolute;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+#cf2 img.transparent {
+  opacity: 0;
+}
+
+#cf_onclick {
+  cursor: pointer;
+  position: fixed;
+  z-index: 100;
+}
+
+#pressforhell {
+  cursor: pointer;
+  position: absolute;
+  left: 1100px;
+  top: 50px;
+  z-index: 100;
+}
+
+#sleeping {
+  position: absolute;
+  z-index: 1;
+  left: 400px;
+  color: white;
+  font-size: 100px;
+}
+
+#nightsSlept {
+  position: absolute;
+  z-index: 103;
+  left: 1000px;
+  color: white;
+  top: 200px;
+  font-size: 600px;
+}
+
+#heaven {
+  position: absolute;
+  background-size: cover;
+  background-image: url("../assets/images/heavenwindow.png");
+  z-index: 99;
+  top: 300px;
+  left: 500px;
+  filter: drop-shadow(20px 20px 10px black);
+
+    {
+    transition: all .2s ease-in-out;
+  }
+}
+
+#heaven:hover {
+  transform: scale(1.5);
+  filter: saturate(800%);
+}
+
+#hell {
+  position: absolute;
+  background-size: cover;
+  z-index: 99;
+  top: 300px;
+  right: 500px;
+  filter: drop-shadow(20px 20px 10px black);
+}
+
+#hell:hover {
+  transform: scale(1.5);
+  filter: saturate(800%);
+}
+
+#hell2 {
+  font-size: 70px;
+  position: absolute;
+  background-size: cover;
+  z-index: 100;
+  top: 100px;
+  right:330px;
+  transform: scale(1);
+  filter: drop-shadow(20px 20px 10px black);
+}
+
+#heaven2 {
+  font-size: 70px;
+  position: absolute;
+  background-size: cover;
+  z-index: 101;
+  top: 100px;
+  left: 350px;
+  transform: scale(1);
+  filter: drop-shadow(20px 20px 10px black);
+}
+
+#ground {
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  background-image: url("../assets/images/earth.jpg");
+  width: 2000px;
+  height: 1000px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+audio {
+  position: absolute;
+  z-index: -1;
+}
