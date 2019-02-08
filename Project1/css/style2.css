@@ -88,8 +88,35 @@ opacity:0;
 }
 #cf_onclick {
 cursor:pointer;
+position:fixed;
+z-index: 100;
 }
 
+#pressforhell {
+  cursor:pointer;
+  position:absolute;
+  left: 1100px;
+  top: 50px;
+  z-index: 100;
+}
+#sleeping {
+  position:absolute;
+  z-index: 1;
+  left: 400px;
+  color: white;
+  font-size: 100px;
+}
+
+
+#nightsSlept {
+  position: absolute;
+z-index: 103;
+left: 1000px;
+color: white;
+top: 200px;
+font-size: 600px;
+
+}
 #heaven {
   position:absolute;
   background-size: cover;
@@ -97,7 +124,7 @@ background-image: url("../assets/images/heavenwindow.png");
 z-index: 99;
 top: 300px;
 left: 500px;
-
+ filter: drop-shadow(20px 20px 10px black);
 { transition: all .2s ease-in-out; }
 
 }
@@ -108,10 +135,10 @@ left: 500px;
 #hell {
   position:absolute;
   background-size: cover;
-background-image: url("../assets/images/heavenwindow.png");
 z-index: 99;
 top: 300px;
 right: 500px;;
+ filter: drop-shadow(20px 20px 10px black);
 
 }
 
@@ -125,8 +152,10 @@ filter: hue-rotate(300deg);
   position:absolute;
   background-size: cover;
   z-index: 100;
-  top: 200px;
-  right: 460px;
+  top: 150px;
+  right: 400px;
+  transform: scale(2);
+   filter: drop-shadow(20px 20px 10px black);
 
 }
 
@@ -134,10 +163,11 @@ filter: hue-rotate(300deg);
   font-size: 70px;
   position:absolute;
   background-size: cover;
-  z-index: 100;
-  top: 200px;
-  left: 460px;
-
+  z-index: 101;
+  top: 100px;
+  left: 350px;
+    transform: scale(1.5);
+     filter: drop-shadow(20px 20px 10px black);
 }
 
 #ground {
@@ -150,6 +180,7 @@ filter: hue-rotate(300deg);
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -1;
+  filter: hue-rotate(90deg);
 }
 
 

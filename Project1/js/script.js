@@ -53,7 +53,7 @@ var d = dist(playerX,playerY,preyX,preyY);
 //
 // Sets up the basic elements of the game
 function setup() {
-  createCanvas(1500,500);
+  createCanvas(1300,700);
 
   noStroke();
 
@@ -64,7 +64,7 @@ function setup() {
 function preload () {
 
   sisyphus = loadImage("assets/images/sisyphus3.png");
-  bg = loadImage('assets/images/hell.jpg');
+  bg = loadImage('assets/images/hellgame.png');
   boulder = loadImage('assets/images/boulder2.png');
 
 }
