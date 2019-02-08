@@ -1,12 +1,8 @@
 /******************************************************
 
-Game - Chaser
-Pippin Barr
+SYSIPHUS IN hell
 
-A simple game of cat and mouse.
-
-Physics-based movement, keyboard controls, health/stamina,
-sprinting, random movement, screen wrap.
+TWO MODES, EITHER RUNNING FROM THE BOULDER OR CHASING THE BOULDER
 
 ******************************************************/
 
@@ -43,7 +39,7 @@ var preyFill = 200;
 var eatHealth = 10;
 // Number of prey eaten during the game
 var preyEaten = 0;
-
+//added states for game modes
 var state = "CHASING";
 var song;
 
@@ -52,16 +48,17 @@ var song;
 //
 // Sets up the basic elements of the game
 function setup() {
+  //make canvas window width and height
     createCanvas(windowWidth, windowHeight);
 
   noStroke();
-
+//setup player and prey
   setupPrey();
   setupPlayer();
 }
 
 function preload () {
-
+//adding the images and sounds
   sisyphus = loadImage("assets/images/skelly.png");
   bg = loadImage('assets/images/hellgame.png');
   boulder = loadImage('assets/images/hellboulder.png');
@@ -92,41 +89,17 @@ function setupPlayer() {
 
 // draw()
 //
-// While the game is active, checks input
-// updates positions of prey and player,
-// checks health (dying), checks eating (overlaps)
-// displays the two agents.
-// When the game is over, shows the game over screen.
 function draw() {
-  //
-  // background(100,100,200);
-  //
-  // if (!gameOver) {
-  //   handleInput();
-  //
-  //   movePlayer();
-  //   movePrey();
-  //
-  //   updateHealth();
-  //   checkEating();
-  //
-  //   drawPrey();
-  //   drawPlayer();
-  //
-  // }
-  // else {
-  //   runAway();
-  // }
 
   switch (state) {
-//LOADING SCREEN, JUST THE INSTRUCTIONS
+//CHASING THE BOULDER
     case "CHASING":
-    //USING MY LOADING FUNCTION
+  //CHASING FUNCTION
     chasing();
     break;
-//STREETZ REFERS TO THE STREETZ LEVEL
+//RUNNING FROM THE BOULDER
     case "RUNNING":
-//THE STREETS FUNCTION OBVIOUSLY
+//RUNNING FUNCTION
       running();
       break;
 
@@ -134,19 +107,23 @@ function draw() {
 }
 
 function chasing(){
-
+//background is hell
 background(bg);
-
+//controls (up down side and side)
     handleInput();
-
+//how to move the boulder and sisyphus
     movePlayer();
     movePrey();
-
+//check if sisyphus is dead
+//update health for the chasing mode
     updateHealth();
-    checkEating();
-
+//colission for the running mode
+    sisyphusCollission();
+//drawing the prey
     drawPrey();
+    //drawing the player
     drawPlayer();
+    //text for game information
     textSize(15);
     fill(255,244,0);
     fill(255,255,255);
@@ -158,27 +135,26 @@ text("DANGER", 10, 60, 500, 1000);
 fill(0,255,0);
 text("SAFE", 200, 60, 500, 1000);
 fill(255,255,255);
-
-    rect (10,10,playerHealth,50);
+rect (10,10,playerHealth,50);
 }
 
 function running(){
-
-
+//function for the running game mode
+//background is hell
 background(bg);
-
+//input via the arrow keys
   handleInput();
-
+//how the player and prey move respectively
   movePlayer();
   movePrey();
-
-  checkEating();
-
+//check if the colission has happened
+  sisyphusCollission();
+//modiefied draw function so the roles can switch
   drawPrey2();
   drawPlayer2();
-
+//distance variable for the danger tracker
   var d = dist(playerX,playerY,preyX,preyY);
-
+//informational game text
   fill(255,244,0);
   textSize(30);
   fill(255,255,255);
@@ -227,12 +203,7 @@ function movePlayer() {
   // Update position
   playerX += playerVX;
   playerY += playerVY;
-
-  // Wrap when player goes off the canvas
-  //
-  // playerX = constrain(playerX, 0,windowWidth);
-  // playerY = constrain(playerY, 0,400);
-  //
+//make sure the player doesnt go off screen
   if (playerX < 0) {
     playerX += width;
   }
@@ -266,63 +237,27 @@ function updateHealth() {
 }
 
 
+//check is sisyphus collides with boulder
 
-// checkEating()
-//
-// Check if the player overlaps the prey and updates health of both
-function checkEating() {
+function sisyphusCollission() {
   // Get distance of player to prey
   var d = dist(playerX,playerY,preyX,preyY);
   // Check if it's an overlap
   if (d < playerRadius + preyRadius) {
-    // Increase the player health
-    playerHealth = constrain(playerHealth + eatHealth,0,playerMaxHealth);
-    // Reduce the prey health
-    preyHealth = constrain(preyHealth - eatHealth,0,preyMaxHealth);
-
-    // Check if the prey died
-    if (preyHealth === 0) {
-      // Move the "new" prey to a random position
-      preyX = random(0,width);
-      preyY = random(0,height);
-      // Give it full health
-      preyHealth = preyMaxHealth;
-      // Track how many prey were eaten
-      preyEaten++;
-    }
-  }
-}
-
-function checkEating() {
-  // Get distance of player to prey
-  var d = dist(playerX,playerY,preyX,preyY);
-  // Check if it's an overlap
-  if (d < playerRadius + preyRadius) {
+    //play the death noise
     death.play();
 colission.play();
-
+//change state
     state = "CHASING";
   }
 }
 // movePrey()
 //
-// Moves the prey based on random velocity changes
-function movePrey() {
-  // Change the prey's velocity at random intervals
-  // random() will be < 0.05 5% of the time, so the prey
-  // will change direction on 5% of frames
 
-  // will change direction on 5% of frames
-// if (random() < 0.05) {
-//   // Set velocity based on random values to get a new direction
-//   // and speed of movement
-//   // Use map() to convert from the 0-1 range of the random() function
-//   // to the appropriate range of velocities for the prey
-//   preyVX = map(random(),0,1,-preyMaxSpeed,preyMaxSpeed);
-//   preyVY = map(random(),0,1,-preyMaxSpeed,preyMaxSpeed);
-// }
+function movePrey() {
+//move prey to follow the player at an increased velocity over time
   if ((dist(preyX, preyY, playerX, playerY) > preyRadius + playerRadius)) {
-//little speed boost so the cops make it to you faster than the other cars
+//speed boost to lower the pace so it's playable
     var speedboost = 0.03;
     preyVX = 1;
     preyVY = 1;
@@ -334,10 +269,7 @@ function movePrey() {
 preyX += preyVX;
 preyY += preyVY;
 
-
-// preyY = constrain(preyY,0,1000);
-// preyX = constrain(preyX, 0,1000);
-  // Screen wrapping
+//more screen wrapping
   if (preyX < 0) {
     preyX += width;
   }
@@ -356,7 +288,7 @@ preyY += preyVY;
 
 // drawPrey()
 //
-// Draw the prey as an ellipse with alpha based on health
+// Draw the prey as sisyphus with an opacity of the health of sisyphus
 function drawPrey() {
   tint(255,playerHealth);
   image(sisyphus,preyX,preyY,preyRadius*2);
@@ -364,30 +296,20 @@ function drawPrey() {
 
 // drawPlayer()
 //
-// Draw the player as an ellipse with alpha based on health
+// Draw the player as a boulder
 function drawPlayer() {
+  //no tint
   tint(255,255);
   image(boulder,playerX,playerY,playerRadius*2);
 }
 
 function drawPrey2() {
+  //draw prey as sisyphus without having a health based tint
   image(sisyphus,playerX,playerY,playerRadius*2);
 }
 
 function drawPlayer2() {
+  //draw the boulder based on health
   fill(255,playerHealth);
   image(boulder,preyX,preyY,preyRadius*2);
-}
-
-// showGameOver()
-//
-// Display text about the game being over!
-function showGameOver() {
-  textSize(32);
-  textAlign(CENTER,CENTER);
-  fill(0);
-  var gameOverText = "GAME OVER\n";
-  gameOverText += "You ate " + preyEaten + " prey\n";
-  gameOverText += "before you died."
-  text(gameOverText,width/2,height/2);
 }

@@ -106,7 +106,7 @@ body {
 
 #hell:hover {
   transform: scale(1.5);
-  filter: hue-rotate(300deg);
+  filter: saturate(800%);
 }
 
 #hell2 {
@@ -114,9 +114,9 @@ body {
   position: absolute;
   background-size: cover;
   z-index: 100;
-  top: 150px;
-  right: 400px;
-  transform: scale(2);
+  top: 100px;
+  right:330px;
+  transform: scale(1);
   filter: drop-shadow(20px 20px 10px black);
 }
 
@@ -127,7 +127,7 @@ body {
   z-index: 101;
   top: 100px;
   left: 350px;
-  transform: scale(1.5);
+  transform: scale(1);
   filter: drop-shadow(20px 20px 10px black);
 }
 
@@ -141,7 +141,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -1;
-  filter: hue-rotate(90deg);
 }
 
 audio {
