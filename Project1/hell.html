@@ -10,15 +10,20 @@
     <!-- Library script(s) -->
     <script src="js/libraries/p5.min.js"></script>
 
+    <script defer src=https://cdn.JsDelivr.net/npm/p5/lib/addons/p5.sound.min.js></script>
+
+
     <!-- My script(s) -->
 
   </head>
 
   <body>
+    <audio controls autoplay>
+      <source src="assets/sounds/nightmare.mp3" type="audio/mp3">
+      <source src="assets/sounds/nightmare.mp3" type="audio/ogg">
+    </audio>
 
-    <h1>SYSIPHUS HORRIBLE HELL WORLD</h1>
-
-    <a href="heaven.html" class="button"> Click For Heaven </a> 
+    <a href="heaven.html" id="pressforheaven"> <img src="assets/images/pressforheaven.png" alt=""> </a>
 
           <script src="js/script.js"></script>  <!-- HTML would go here if needed. -->
   </body>

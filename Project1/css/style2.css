@@ -188,3 +188,8 @@ filter: hue-rotate(300deg);
   width: 100px;
   height: 100px;
 }
+
+audio {
+  position: absolute;
+  z-index: -1;
+}

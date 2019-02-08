@@ -102,17 +102,19 @@
 //
 //         $('#nightsSlept').text(nightsSlept);
 //       }
-//   });
-// });
+
 let nightsSlept = 0;
+
+let snd = new Audio("assets/sounds/rooster.mp3");
 
 $(document).ready(function() {
   $("#cf_onclick").click(function() {
   $("#cf2 img.top").toggleClass("transparent");
-
+snd.play();
 if ($("#cf2 img.top").hasClass("transparent")){
-
+snd.play();
   nightsSlept += 1;
+
 }
 
   $('#nightsSlept').text(nightsSlept);

@@ -12,7 +12,6 @@ sprinting, random movement, screen wrap.
 
 // Track whether the game is over
 var gameOver = false;
-
 // Player position, size, velocity
 var sisyphus;
 var playerX;
@@ -46,14 +45,14 @@ var eatHealth = 10;
 var preyEaten = 0;
 
 var state = "CHASING";
+var song;
 
-var d = dist(playerX,playerY,preyX,preyY);
 
 // setup()
 //
 // Sets up the basic elements of the game
 function setup() {
-  createCanvas(1300,700);
+    createCanvas(windowWidth, windowHeight);
 
   noStroke();
 
@@ -63,9 +62,12 @@ function setup() {
 
 function preload () {
 
-  sisyphus = loadImage("assets/images/sisyphus3.png");
+  sisyphus = loadImage("assets/images/skelly.png");
   bg = loadImage('assets/images/hellgame.png');
-  boulder = loadImage('assets/images/boulder2.png');
+  boulder = loadImage('assets/images/hellboulder.png');
+  colission = loadSound("assets/sounds/colission.mp3");
+  nightmare = loadSound("assets/sounds/nightmare.mp3");
+  death = loadSound("assets/sounds/death.mp3");
 
 }
 // setupPrey()
@@ -133,8 +135,6 @@ function draw() {
 
 function chasing(){
 
-
-
 background(bg);
 
     handleInput();
@@ -149,8 +149,10 @@ background(bg);
     drawPlayer();
     textSize(15);
     fill(255,244,0);
-text("MAKE SYSIPHUS RUN UNTIL HE DIES OF EXHAUSTION", 320, 10, 1000, 500);
-text("EXHAUSTION LEVEL", 10, 80, 500, 1000);
+    fill(255,255,255);
+    textSize(30);
+text("MAKE SYSIPHUS RUN UNTIL HE DIES OF EXHAUSTION", 500, 120, 1000, 500);
+text("EXHAUSTION LEVEL", 10, 100, 500, 1000);
 fill(255,0,0);
 text("DANGER", 10, 60, 500, 1000);
 fill(0,255,0);
@@ -161,7 +163,6 @@ fill(255,255,255);
 }
 
 function running(){
-
 
 
 background(bg);
@@ -179,8 +180,10 @@ background(bg);
   var d = dist(playerX,playerY,preyX,preyY);
 
   fill(255,244,0);
-  text("RUN FROM THE BOULDER UNTIL YOU GET CRUSHED", 320, 10, 1000, 500);
-  text("BOULDER DISTANCE", 10, 80, 500, 1000);
+  textSize(30);
+  fill(255,255,255);
+  text("RUN FROM THE BOULDER UNTIL YOU GET CRUSHED", 500, 120, 1000, 500);
+  text("BOULDER DISTANCE", 10, 100, 500, 1000);
   fill(255,0,0);
   text("DANGER", 10, 60, 500, 1000);
   fill(0,255,0);
@@ -226,23 +229,23 @@ function movePlayer() {
   playerY += playerVY;
 
   // Wrap when player goes off the canvas
+  //
+  // playerX = constrain(playerX, 0,windowWidth);
+  // playerY = constrain(playerY, 0,400);
+  //
+  if (playerX < 0) {
+    playerX += width;
+  }
+  else if (playerX > width) {
+    playerX -= width;
+  }
 
-  playerX = constrain(playerX, 0,1400);
-  playerY = constrain(playerY, 0,400);
-  //
-  // if (playerX < 0) {
-  //   playerX += width;
-  // }
-  // else if (playerX > width) {
-  //   playerX -= width;
-  // }
-  //
-  // if (playerY < 0) {
-  //   playerY += height;
-  // }
-  // else if (playerY > height) {
-  //   playerY -= height;
-  // }
+  if (playerY < 0) {
+    playerY += height;
+  }
+  else if (playerY > height) {
+    playerY -= height;
+  }
 }
 
 // updateHealth()
@@ -257,8 +260,8 @@ function updateHealth() {
     // If so, the game is over
     playerHealth = playerMaxHealth;
     gameOver = true;
-
-        state = "RUNNING";
+    death.play();
+    state = "RUNNING";
   }
 }
 
@@ -295,7 +298,8 @@ function checkEating() {
   var d = dist(playerX,playerY,preyX,preyY);
   // Check if it's an overlap
   if (d < playerRadius + preyRadius) {
-    // Increase the player health
+    death.play();
+colission.play();
 
     state = "CHASING";
   }
@@ -331,22 +335,22 @@ preyX += preyVX;
 preyY += preyVY;
 
 
-preyY = constrain(preyY,0,1000);
-preyX = constrain(preyX, 0,1000);
+// preyY = constrain(preyY,0,1000);
+// preyX = constrain(preyX, 0,1000);
   // Screen wrapping
-  // if (preyX < 0) {
-  //   preyX += width;
-  // }
-  // else if (preyX > width) {
-  //   preyX -= width;
-  // }
-  //
-  // if (preyY < 0) {
-  //   preyY += height;
-  // }
-  // else if (preyY > height) {
-  //   preyY -= height;
-  // }
+  if (preyX < 0) {
+    preyX += width;
+  }
+  else if (preyX > width) {
+    preyX -= width;
+  }
+
+  if (preyY < 0) {
+    preyY += height;
+  }
+  else if (preyY > height) {
+    preyY -= height;
+  }
 }
 
 
