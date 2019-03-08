@@ -25,8 +25,8 @@ let $thumbsdown;
 let $heaven;
 let $apple;
 let $currentImage;
-
-let images = [$apple, $heaven];
+//
+// let images = [$apple, $heaven];
 
 $(document).ready(setup);
 
@@ -107,12 +107,13 @@ function thumbsupClicked () {
 
 function thumbsdownClicked(){
 
-let $currentImage = images[Math.floor(Math.random()*images.length)];
-
-for (var i = 0; i < arrayLength; i++) {
-
-       $currentImage.css("opacity", 1);
+// let $currentImage = images[Math.floor(Math.random()*images.length)];
+//
+// for (var i = 0; i < arrayLength; i++) {
+//
+//        $currentImage.css("opacity", 1);
 
 $heaven.css("opacity", 1);
+
 
 }
