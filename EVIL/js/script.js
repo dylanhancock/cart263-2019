@@ -25,8 +25,7 @@ let $thumbsdown;
 let $heaven;
 let $apple;
 let $currentImage;
-//
-// let images = [$apple, $heaven];
+let images = ['#apple', '#heaven'];
 
 $(document).ready(setup);
 
@@ -40,13 +39,17 @@ $(document).ready(setup);
 
 function setup() {
 
+  $(document).on('click',function () {
+    $('video').each(function () {
+      $(this).get(0).play();
+    });
+  });
 
   console.log('SETUP');
   // document.getElementById('thumbsup').addEventListener('click', thumbsupClicked);
   // Save the selection of all spans (since we do stuff to them multiple times)
   $thumbsup = $('#thumbsup');
   $thumbsdown = $('#thumbsdown');
-  $heaven = $('#heaven');
   // Set a click handler on the spans (so we know when they're clicked)
 
   $thumbsup.on('click',thumbsupClicked);
@@ -62,6 +65,7 @@ function setup() {
   $video.prop("muted",true);
   $('video:last').prop("muted",false);
 
+let currentImageId = images[Math.floor(Math.random()*images.length)];
 }
 
 
@@ -100,20 +104,25 @@ function thumbsupClicked () {
   },5000,'swing',function () {
     $(this).remove();
     $('video:last').prop("muted",false);
-
   });
+
+let currentImageId = images[Math.floor(Math.random()*images.length)];
+if ($(currentImageId).hasClass("visible2"))
+{
+  $(currentImageId).css("opacity",0);
+}
+
 
 }
 
 function thumbsdownClicked(){
 
-// let $currentImage = images[Math.floor(Math.random()*images.length)];
-//
-// for (var i = 0; i < arrayLength; i++) {
-//
-//        $currentImage.css("opacity", 1);
+let currentImageId = images[Math.floor(Math.random()*images.length)];
 
-$heaven.css("opacity", 1);
+       //
+       $(currentImageId).css("opacity", 1);
+       $(currentImageId).addClass( "visible2" );
 
 
+// }
 }
