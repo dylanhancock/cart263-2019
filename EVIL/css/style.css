@@ -1,35 +1,62 @@
-@-webkit-keyframes rotate {
-    0% {
-        -webkit-transform:translate(100px, 100px) rotate(0deg) translate(-100px, -100px) rotate(0deg);
-        background-color:red;
-    }
-  13% {
-        -webkit-transform:translate(100px, 100px) rotate(45deg) translate(-100px, -100px) rotate(-45deg);
+
+
+@keyframes rot {
+	from {
+		transform: rotate(0deg)
+		           translate(-150px)
+		           rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg)
+		           translate(-150px)
+		           rotate(-360deg);
+	}
+}
+@keyframes roach {
+  from {
+    transform: translateX(0px) translateY(0px);
+
   }
-  25% {
-      -webkit-transform:translate(100px, 100px) rotate(90deg) translate(-100px, -100px) rotate(-90deg);
+  to {
+        transform: translateX(1000px) translateY(1000px);
   }
-  38% {
-      -webkit-transform:translate(100px, 100px) rotate(135deg) translate(-100px, -100px) rotate(0deg);
+}
+
+@keyframes mackeeper {
+  0% {
+    transform: scale(1);
+
   }
   50% {
-      -webkit-transform:translate(100px, 100px) rotate(180deg) translate(-100px, -100px) rotate(-180deg);
+        transform: scale(1.5);
   }
-  63% {
-      -webkit-transform:translate(100px, 100px) rotate(225deg) translate(-100px, -100px) rotate(225deg);
+  100% {
+    transform:scale(1);
   }
-  75% {
-      -webkit-transform:translate(100px, 100px) rotate(270deg) translate(-100px, -100px) rotate(-270deg);
+}
+
+@keyframes thumbsup {
+  0% {
+    filter:hue-rotate(0deg);
   }
-  88% {
-      -webkit-transform:translate(100px, 100px) rotate(315deg) translate(-100px, -100px) rotate(315deg);
+  100% { filter:hue-rotate(360deg);
   }
-    100% {
-        -webkit-transform:translate(100px, 100px) rotate(360deg) translate(-100px, -100px) rotate(-360deg);
-    }
+}
+
+@keyframes thumbshover {
+  0% {filter:saturate(100%);
+  }
+  50% {filter:saturate(700%)}
+}
+100%{
+  filter:saturate(100%);
 }
 
 
+#homepage {
+  background: black;
+
+}
 
 #thumbsup{
   position: fixed;
@@ -37,60 +64,96 @@
   bottom: -150px;
   z-index: 1000;
   transform: translate(-50%, -50%);
+  animation: thumbshover 1s infinite linear;
+}
 
+#thumbsup:hover{
+
+      animation: thumbsup 1s infinite linear;
 }
 
 #thumbsdown{
-
   position: fixed;
   left: 59%;
   bottom: -150px;
   padding: 20px;
   z-index: 1000;
   transform: translate(-50%, -50%);
+  animation: thumbshover 1s infinite linear;
 }
 
-#apple{
+#thumbsdown:hover{
+
+      animation: thumbsup 1s infinite linear;
+}
+#mackeeper{
   opacity: 0;
   z-index: 300;
+  margin-left: 100px;
+  animation: mackeeper 1s infinite linear;
   position: fixed;
 }
 
 
-#heaven {
-
+#clorox {
   opacity: 0;
+  margin-left: 50%;
+  margin-top: 25%;
   z-index: 300;
-    -webkit-animation-duration: 4s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-name:"rotate";
-    -webkit-animation-iteration-count: infinite;
+    animation: rot 3s infinite linear;
     position:fixed;
 
+}
+
+#eyes {
+  opacity: 0;
+  z-index: 2000;
+    position:absolute;
+      animation: roach 3s infinite linear;
+
+}
+#demons {
+margin-top: 36%;
+margin-left: 80%;
+position: absolute;
+  opacity: 0;
+  z-index: 3000;
+  transform: scale(2);
+
+}
+
+#demons:hover{
+  transform:scale(5);
 }
 .visible {
   visibility: visible;
   opacity: 1;
   /* z-index:100; */
-  transition: opacity 2s linear;
+  transition: opacity 0.5s linear;
 }
 
 .visible2 {
   visibility: visible;
   opacity: 1;
   /* z-index:100; */
-  transition: opacity 2s linear;
+  transition: opacity 0.1s linear;
 }
 
 .hidden {
   visibility: hidden;
   opacity: 0;
   /* z-index:0; */
-  transition: visibility 0s 2s, opacity 2s linear;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
 video {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position:fixed;
+  margin-left:10%;
+  margin-right: 5%;
+  margin-top:5%;
+
+}
+
+body{
+  background-color: black;
 }

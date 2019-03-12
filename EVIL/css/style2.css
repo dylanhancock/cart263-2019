@@ -1,0 +1,31 @@
+body{
+  background-color: black;
+  color: white;
+}
+
+h1 {
+  font-family: "Kids";
+  font-size: 200px;
+  text-align: center;
+}
+
+
+h2{
+  font-family: "Kids";
+  font-size: 200px;
+  text-align: center;
+
+}
+
+h3{
+  font-family: "Kids";
+  font-size: 100px;
+  text-align: center;
+
+
+}
+
+@font-face {
+  font-family: "Kids";
+  src: url("../assets/fonts/Kid_Font_.ttf") format("truetype");
+}

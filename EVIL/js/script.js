@@ -24,8 +24,14 @@ let $video;
 let $thumbsdown;
 let $heaven;
 let $apple;
+let $eyes;
+let $demons;
+let $mackeeper;
 let $currentImage;
-let images = ['#apple', '#heaven'];
+let images = ['#mackeeper', '#clorox', '#eyes', '#demons'];
+let $fuck;
+let $like;
+let $clorox;
 
 $(document).ready(setup);
 
@@ -61,11 +67,29 @@ function setup() {
 ///telling the program to use my secret mouseover function on mouseover
   $video = $('video');
 
+  $( "#mackeeper" ).draggable();
+
+    $( "#clorox" ).draggable();
+  $('#mackeeper').click(function(){
+  window.open('https://mackeeper.com/landings/87.2/?affid=4e146300-4442-11e9-a3d0-2f7c34604700-mzb&epayId=29&gclid=Cj0KCQjwjpjkBRDRARIsAKv-0O3gsQdrXInkxBMgTUgIRVhJvW3CgD0e003rjMOCEtDjqYSPNGwvjnIaAk0CEALw_wcB&landId=3007&reqid=Self=1-5c86cf1e-1eb364541e0901e25c75ad26;Root=1-5c86cf1e-190635dbfb2f7845bd2a5674&tid_ext=mackeeper;e;323267477431;4126966415&trt=29_451211356&userDefiner=mzb_4058&utm_campaign=uk_mackeeper_splt_loc81_lp872_7mar&utm_content=&utm_medium=&utm_source=&utm_term=', 'window name', 'window settings');
+  return false;
+});
+
 
   $video.prop("muted",true);
   $('video:last').prop("muted",false);
 
 let currentImageId = images[Math.floor(Math.random()*images.length)];
+$fuck = $('#fuck');
+$like = $('#like');
+$clorox = $('#clorox');
+$like.on('mouseover',wordSwap);
+$like.on('mouseout',text);
+$fuck.on('mouseover', wordSwap2);
+$fuck.on('mouseout', text2);
+$clorox.on('mouseover',bleachSwap);
+$clorox.on('mouseout',bleachReverse);
+
 }
 
 
@@ -107,11 +131,9 @@ function thumbsupClicked () {
   });
 
 let currentImageId = images[Math.floor(Math.random()*images.length)];
-if ($(currentImageId).hasClass("visible2"))
-{
+if ($(currentImageId).hasClass("visible2")) {
   $(currentImageId).css("opacity",0);
 }
-
 
 }
 
@@ -123,6 +145,36 @@ let currentImageId = images[Math.floor(Math.random()*images.length)];
        $(currentImageId).css("opacity", 1);
        $(currentImageId).addClass( "visible2" );
 
+}
 
-// }
+
+
+function wordSwap() {
+console.log("hello");
+$(like).text("hate");
+}
+
+function wordSwap2() {
+console.log("hello");
+$(fuck).text("hey");
+}
+
+function text() {
+console.log("hello");
+$(like).text("like");
+}
+
+function text2() {
+console.log("hello");
+$(fuck).text("fuck");
+}
+
+function bleachSwap() {
+console.log("hello");
+$(clorox).attr("src","assets/images/bleachcup.png");
+}
+
+function bleachReverse() {
+console.log("hello");
+$(clorox).attr("src","assets/images/clorox2.png");
 }
