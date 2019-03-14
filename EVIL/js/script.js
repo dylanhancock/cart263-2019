@@ -28,7 +28,7 @@ let $eyes;
 let $demons;
 let $mackeeper;
 let $currentImage;
-let images = ['#mackeeper', '#clorox', '#eyes', '#demons','#uzi'];
+let images = ['#mackeeper', '#clorox', '#eyes', '#demons', '#uzi'];
 let $fuck;
 let $like;
 let $clorox;
@@ -47,8 +47,8 @@ $(document).ready(setup);
 
 function setup() {
 
-  $('#play').on('click',function () {
-    $('video').each(function () {
+  $('#play').on('click', function() {
+    $('video').each(function() {
       $(this).get(0).play();
     });
   });
@@ -60,46 +60,62 @@ function setup() {
   $thumbsdown = $('#thumbsdown');
   // Set a click handler on the spans (so we know when they're clicked)
 
-  $thumbsup.on('click',thumbsupClicked);
-  $thumbsdown.on('click',thumbsdownClicked);
+  $thumbsup.on('click', thumbsupClicked);
+  $thumbsdown.on('click', thumbsdownClicked);
   // Set an interval of 500 milliseconds to update the state of the page
   //NEW////////////////
   //adding secret as an accessable element
   $visible = $('#visible');
-///telling the program to use my secret mouseover function on mouseover
+  ///telling the program to use my secret mouseover function on mouseover
   $video = $('video');
 
-$play = $('#play');
+  $play = $('#play');
 
-$('#play').click(function(){
-  $play.remove();
-});
+  $('#play').click(function() {
+    $play.remove();
+  });
 
-  $( "#mackeeper" ).draggable();
+  $("#mackeeper").draggable();
 
-    $( "#clorox" ).draggable();
-  $('#mackeeper').click(function(){
-  window.open('https://mackeeper.com/landings/87.2/?affid=4e146300-4442-11e9-a3d0-2f7c34604700-mzb&epayId=29&gclid=Cj0KCQjwjpjkBRDRARIsAKv-0O3gsQdrXInkxBMgTUgIRVhJvW3CgD0e003rjMOCEtDjqYSPNGwvjnIaAk0CEALw_wcB&landId=3007&reqid=Self=1-5c86cf1e-1eb364541e0901e25c75ad26;Root=1-5c86cf1e-190635dbfb2f7845bd2a5674&tid_ext=mackeeper;e;323267477431;4126966415&trt=29_451211356&userDefiner=mzb_4058&utm_campaign=uk_mackeeper_splt_loc81_lp872_7mar&utm_content=&utm_medium=&utm_source=&utm_term=', 'window name', 'window settings');
-  return false;
-});
+  $("#clorox").draggable();
+  $('#mackeeper').click(function() {
+    window.open('https://mackeeper.com/landings/87.2/?affid=4e146300-4442-11e9-a3d0-2f7c34604700-mzb&epayId=29&gclid=Cj0KCQjwjpjkBRDRARIsAKv-0O3gsQdrXInkxBMgTUgIRVhJvW3CgD0e003rjMOCEtDjqYSPNGwvjnIaAk0CEALw_wcB&landId=3007&reqid=Self=1-5c86cf1e-1eb364541e0901e25c75ad26;Root=1-5c86cf1e-190635dbfb2f7845bd2a5674&tid_ext=mackeeper;e;323267477431;4126966415&trt=29_451211356&userDefiner=mzb_4058&utm_campaign=uk_mackeeper_splt_loc81_lp872_7mar&utm_content=&utm_medium=&utm_source=&utm_term=', 'window name', 'window settings');
+    return false;
+  });
 
 
-  $video.prop("muted",true);
-  $('video:last').prop("muted",false);
+  $video.prop("muted", true);
+  $('video:last').prop("muted", false);
 
-let currentImageId = images[Math.floor(Math.random()*images.length)];
-$fuck = $('#fuck');
-$like = $('#like');
-$clorox = $('#clorox');
-$uzi = $('#uzi');
-$like.on('mouseover',wordSwap);
-$like.on('mouseout',text);
-$fuck.on('mouseover', wordSwap2);
-$fuck.on('mouseout', text2);
-$clorox.on('mouseover',bleachSwap);
-$clorox.on('mouseout',bleachReverse);
-$uzi.on ('mouseover',uziSwap);
-$uzi.on('mouseout',uziReverse);
+  let currentImageId = images[Math.floor(Math.random() * images.length)];
+  $fuck = $('#fuck');
+  $like = $('#like');
+  $clorox = $('#clorox');
+  $uzi = $('#uzi');
+  $like.on('mouseover', wordSwap);
+  $like.on('mouseout', text);
+  $fuck.on('mouseover', wordSwap2);
+  $fuck.on('mouseout', text2);
+  $clorox.on('mouseover', bleachSwap);
+  $clorox.on('mouseout', bleachReverse);
+  $uzi.on('mouseover', uziSwap);
+  $uzi.on('mouseout', uziReverse);
+
+  if (annyang) {
+    console.log('hiiii');
+    // Let's define our first command. First the text we expect, and then the function it should call
+    let commands = {
+      'jack': () => {console.log('ttttt');},
+      'like': thumbsupClicked,
+      'dislike': thumbsdownClicked
+    };
+
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+
+    // Start listening. You can call this here, or attach this call to an event, button, etc.
+    annyang.start();
+  }
 }
 
 
@@ -118,7 +134,7 @@ $uzi.on('mouseout',uziReverse);
 // chew()
 //
 // Swaps the mouth image between closed and open and plays the crunching SFX
-function thumbsupClicked () {
+function thumbsupClicked() {
   console.log('clicked');
   // We can use .attr() to check the value of an attribute to
   // In this case we check if the image is the open mouth
@@ -135,67 +151,66 @@ function thumbsupClicked () {
   // $('.visible').addClass('hidden');
   $('video:last').animate({
     opacity: 0
-  },5000,'swing',function () {
+  }, 5000, 'swing', function() {
     $(this).remove();
-    $('video:last').prop("muted",false);
+    $('video:last').prop("muted", false);
   });
 
-let currentImageId = images[Math.floor(Math.random()*images.length)];
-if ($(currentImageId).hasClass("visible2")) {
-  $(currentImageId).css("opacity",0);
-}
+  let currentImageId = images[Math.floor(Math.random() * images.length)];
+  if ($(currentImageId).hasClass("visible2")) {
+    $(currentImageId).css("opacity", 0);
+  }
 
 }
 
-function thumbsdownClicked(){
+function thumbsdownClicked() {
+  console.log('clicked');
+  let currentImageId = images[Math.floor(Math.random() * images.length)];
 
-let currentImageId = images[Math.floor(Math.random()*images.length)];
-
-       //
-       $(currentImageId).append('body');
-       $(currentImageId).css("opacity", 1);
-       $(currentImageId).addClass( "visible2" );
+  //
+  $(currentImageId).append('body');
+  $(currentImageId).css("opacity", 1);
+  $(currentImageId).addClass("visible2");
 
 }
-
 
 
 function wordSwap() {
-console.log("hello");
-$(like).text("hate");
+  console.log("hello");
+  $(like).text("hate");
 }
 
 function wordSwap2() {
-console.log("hello");
-$(fuck).text("hey");
+  console.log("hello");
+  $(fuck).text("hey");
 }
 
 function text() {
-console.log("hello");
-$(like).text("like");
+  console.log("hello");
+  $(like).text("like");
 }
 
 function text2() {
-console.log("hello");
-$(fuck).text("fuck");
+  console.log("hello");
+  $(fuck).text("fuck");
 }
 
 function bleachSwap() {
-console.log("hello");
-$(clorox).attr("src","assets/images/bleachcup.png");
+  console.log("hello");
+  $(clorox).attr("src", "assets/images/bleachcup.png");
 }
 
 function bleachReverse() {
-console.log("hello");
-$(clorox).attr("src","assets/images/clorox2.png");
+  console.log("hello");
+  $(clorox).attr("src", "assets/images/clorox2.png");
 }
 
 function uziSwap() {
-console.log("hello");
-$(uzi).attr("src","assets/images/explosionlaptop.gif");
+  console.log("hello");
+  $(uzi).attr("src", "assets/images/explosionlaptop.gif");
 }
 
 function uziReverse() {
-console.log("hello");
-$(uzi).attr("src","assets/images/uzirotate.gif");
+  console.log("hello");
+  $(uzi).attr("src", "assets/images/uzirotate.gif");
 }
