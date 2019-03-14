@@ -1,23 +1,11 @@
 "use strict";
 
 /*****************
-
-Eat Up
-Pippin Barr
-
-Using jQuery UI's draggable and droppable methods to
-feed a hungry mouth!
-
-Sounds:
-Buzzing: https://freesound.org/people/soundmary/sounds/194931/
-Chewing: https://freesound.org/people/InspectorJ/sounds/412068/
+BRAIN DETERGENT BY DYLAN HANCOCK
 
 ******************/
 
-// Sound effects for the experience
-
-
-// Variable to hold our two key elements
+// Variables
 let $visible;
 let $thumbsup;
 let $video;
@@ -37,16 +25,9 @@ let $play;
 
 $(document).ready(setup);
 
-// let videos = document.getElementsByTagName('video')
-// console.log(videos);
-// videos.forEach(video => {
-//   console.log(video);
-//   if ( video.readyState === 4 ) console.log('ready')
-// })
-
 
 function setup() {
-
+  //play onclick starts the videos
   $('#play').on('click', function() {
     $('video').each(function() {
       $(this).get(0).play();
@@ -54,58 +35,49 @@ function setup() {
   });
 
   console.log('SETUP');
-  // document.getElementById('thumbsup').addEventListener('click', thumbsupClicked);
-  // Save the selection of all spans (since we do stuff to them multiple times)
+  //defining the elements
   $thumbsup = $('#thumbsup');
   $thumbsdown = $('#thumbsdown');
-  // Set a click handler on the spans (so we know when they're clicked)
+  $visible = $('#visible');
+  $video = $('video');
+  $play = $('#play');
+  $fuck = $('#fuck');
+  $like = $('#like');
+  $clorox = $('#clorox');
+  $uzi = $('#uzi');
+  //click handler on thumbs up and down
 
   $thumbsup.on('click', thumbsupClicked);
   $thumbsdown.on('click', thumbsdownClicked);
-  // Set an interval of 500 milliseconds to update the state of the page
-  //NEW////////////////
-  //adding secret as an accessable element
-  $visible = $('#visible');
-  ///telling the program to use my secret mouseover function on mouseover
-  $video = $('video');
-
-  $play = $('#play');
-
+  //click handler on the play button
   $('#play').click(function() {
     $play.remove();
   });
-
+  //make mackeeper  and clorox draggable
   $("#mackeeper").draggable();
-
   $("#clorox").draggable();
+  //mackeeper click function
   $('#mackeeper').click(function() {
     window.open('https://mackeeper.com/landings/87.2/?affid=4e146300-4442-11e9-a3d0-2f7c34604700-mzb&epayId=29&gclid=Cj0KCQjwjpjkBRDRARIsAKv-0O3gsQdrXInkxBMgTUgIRVhJvW3CgD0e003rjMOCEtDjqYSPNGwvjnIaAk0CEALw_wcB&landId=3007&reqid=Self=1-5c86cf1e-1eb364541e0901e25c75ad26;Root=1-5c86cf1e-190635dbfb2f7845bd2a5674&tid_ext=mackeeper;e;323267477431;4126966415&trt=29_451211356&userDefiner=mzb_4058&utm_campaign=uk_mackeeper_splt_loc81_lp872_7mar&utm_content=&utm_medium=&utm_source=&utm_term=', 'window name', 'window settings');
     return false;
   });
 
-
+  //mute all videos except the one ontop (the last video)
   $video.prop("muted", true);
   $('video:last').prop("muted", false);
-
+  //current image id at random
   let currentImageId = images[Math.floor(Math.random() * images.length)];
-  $fuck = $('#fuck');
-  $like = $('#like');
-  $clorox = $('#clorox');
-  $uzi = $('#uzi');
+  //mouseover and mouseout functions
   $like.on('mouseover', wordSwap);
   $like.on('mouseout', text);
-  $fuck.on('mouseover', wordSwap2);
-  $fuck.on('mouseout', text2);
   $clorox.on('mouseover', bleachSwap);
   $clorox.on('mouseout', bleachReverse);
   $uzi.on('mouseover', uziSwap);
   $uzi.on('mouseout', uziReverse);
 
   if (annyang) {
-    console.log('hiiii');
-    // Let's define our first command. First the text we expect, and then the function it should call
+    //if user says like or dislike, trigger functions
     let commands = {
-      'jack': () => {console.log('ttttt');},
       'like': thumbsupClicked,
       'dislike': thumbsdownClicked
     };
@@ -121,60 +93,38 @@ function setup() {
 
 
 
-// function divClicked (event,ui) {
-//
-// $(this).removeClass('visible');
-//
-//
-// }
-
-// document.addEventListener('click', thumbsupClicked)
-
-
-// chew()
-//
-// Swaps the mouth image between closed and open and plays the crunching SFX
+//Thumbs up on click or speech command reveals the hidden videos
 function thumbsupClicked() {
   console.log('clicked');
-  // We can use .attr() to check the value of an attribute to
-  // In this case we check if the image is the open mouth
-  // if ($('video.attr('class')') === 'visible') {
-  //   // If it is, we set the 'src' attribute to the closed mouth
-  //   $video.attr('class','hidden');
-  //   // and play the crunching
-  // }
-  // else if ($video.attr('class') === 'visible') {
-  //     // If it is, we set the 'src' attribute to the closed mouth
-  //     $video.attr('class','hidden');
-  // }
-
-  // $('.visible').addClass('hidden');
+  //goes to the last video and drops the opacity to zero then removes it.
   $('video:last').animate({
     opacity: 0
   }, 5000, 'swing', function() {
     $(this).remove();
+    //unmute the new video which shows
     $('video:last').prop("muted", false);
   });
-
+  //array which selects a popup to close
   let currentImageId = images[Math.floor(Math.random() * images.length)];
+  //make opacity zero to make popup dissapear
   if ($(currentImageId).hasClass("visible2")) {
     $(currentImageId).css("opacity", 0);
   }
 
 }
-
+//Thumbs down on click or speech command produces a popup
 function thumbsdownClicked() {
-  console.log('clicked');
+  //picks random image from my array to be a popup
   let currentImageId = images[Math.floor(Math.random() * images.length)];
 
-  //
+  //pushes that image onto the screen
   $(currentImageId).append('body');
   $(currentImageId).css("opacity", 1);
   $(currentImageId).addClass("visible2");
 
 }
 
-
+//Jquery swaps the words on the opening screen for a cool effect
 function wordSwap() {
   console.log("hello");
   $(like).text("hate");
@@ -190,26 +140,22 @@ function text() {
   $(like).text("like");
 }
 
-function text2() {
-  console.log("hello");
-  $(fuck).text("fuck");
-}
-
+//swapping of the bleach image on hover
 function bleachSwap() {
   console.log("hello");
   $(clorox).attr("src", "assets/images/bleachcup.png");
 }
-
+//changes the bleach image back to bleach when the hover is gone
 function bleachReverse() {
   console.log("hello");
   $(clorox).attr("src", "assets/images/clorox2.png");
 }
-
+//similar to bleach swap uzi swap changes the gif of the uzi to a pic of a burning laptop
 function uziSwap() {
   console.log("hello");
   $(uzi).attr("src", "assets/images/explosionlaptop.gif");
 }
-
+//this function reverses it back
 function uziReverse() {
   console.log("hello");
   $(uzi).attr("src", "assets/images/uzirotate.gif");
