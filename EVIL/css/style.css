@@ -52,7 +52,60 @@
   filter:saturate(100%);
 }
 
+@-webkit-keyframes flip {
+  from {
+    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0)
+      rotate3d(0, 1, 0, -360deg);
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
 
+  40% {
+    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -190deg);
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -190deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+  50% {
+    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -170deg);
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -170deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  80% {
+    -webkit-transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0)
+      rotate3d(0, 1, 0, 0deg);
+    transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0)
+      rotate3d(0, 1, 0, 0deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  to {
+    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0)
+      rotate3d(0, 1, 0, 0deg);
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes zoink {
+	0% {
+		transform: translate(0px,0);
+	}
+
+	100% {
+		transform: translate(5000px, 0);
+	}
+}
 #homepage {
   background: black;
 
@@ -90,7 +143,7 @@
   opacity: 0;
   z-index: 300;
   margin-left: 100px;
-  animation: mackeeper 1s infinite linear;
+  animation: flip 1s infinite linear;
   position: fixed;
 }
 
@@ -105,13 +158,32 @@
 
 }
 
+#uzi {
+  opacity: 0;
+  margin-left: 70%;
+  margin-top: 25%;
+  z-index: 3000;
+	transform: scale(1.5);
+    position:fixed;
+
+}
+
+#uzi:hover {
+	animation: flip 6s infinite linear;
+}
 #eyes {
   opacity: 0;
   z-index: 2000;
+	margin-left: 20%;
+	margin-top: 30%;
     position:absolute;
-      animation: roach 3s infinite linear;
-
+    animation: mackeeper 1s infinite linear;
 }
+
+#eyes:hover{
+	    animation: zoink 1s infinite linear;
+}
+
 #demons {
 margin-top: 36%;
 margin-left: 80%;
@@ -146,6 +218,19 @@ position: absolute;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
+#play{
+	position:fixed;
+	left:45%;
+	top: 30%;
+	z-index: 4000;
+	opacity: 0.5;
+}
+
+#play:hover {
+
+	transform:scale(1.1);
+	opacity: 1;
+}
 video {
   position:fixed;
   margin-left:10%;

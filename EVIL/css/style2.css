@@ -5,27 +5,45 @@ body{
 
 h1 {
   font-family: "Kids";
-  font-size: 200px;
+  font-size: 150px;
   text-align: center;
+  color: white;
+  text-decoration: none;
 }
 
 
 h2{
   font-family: "Kids";
-  font-size: 200px;
+  font-size: 150px;
   text-align: center;
+  color: white;
+  text-decoration: none;
 
 }
 
 h3{
   font-family: "Kids";
-  font-size: 100px;
+  font-size: 150px;
   text-align: center;
-
+  color: white;
+  text-decoration: none;
 
 }
 
+a{
+  text-decoration: none;
+}
 @font-face {
   font-family: "Kids";
   src: url("../assets/fonts/Kid_Font_.ttf") format("truetype");
+}
+
+img{
+  left: 43%;
+  position: absolute;
+  top: 65%;
+}
+
+img:hover{
+  transform: scale(1.5);
 }

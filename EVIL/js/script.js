@@ -28,10 +28,12 @@ let $eyes;
 let $demons;
 let $mackeeper;
 let $currentImage;
-let images = ['#mackeeper', '#clorox', '#eyes', '#demons'];
+let images = ['#mackeeper', '#clorox', '#eyes', '#demons','#uzi'];
 let $fuck;
 let $like;
 let $clorox;
+let $uzi;
+let $play;
 
 $(document).ready(setup);
 
@@ -45,7 +47,7 @@ $(document).ready(setup);
 
 function setup() {
 
-  $(document).on('click',function () {
+  $('#play').on('click',function () {
     $('video').each(function () {
       $(this).get(0).play();
     });
@@ -67,6 +69,12 @@ function setup() {
 ///telling the program to use my secret mouseover function on mouseover
   $video = $('video');
 
+$play = $('#play');
+
+$('#play').click(function(){
+  $play.remove();
+});
+
   $( "#mackeeper" ).draggable();
 
     $( "#clorox" ).draggable();
@@ -83,13 +91,15 @@ let currentImageId = images[Math.floor(Math.random()*images.length)];
 $fuck = $('#fuck');
 $like = $('#like');
 $clorox = $('#clorox');
+$uzi = $('#uzi');
 $like.on('mouseover',wordSwap);
 $like.on('mouseout',text);
 $fuck.on('mouseover', wordSwap2);
 $fuck.on('mouseout', text2);
 $clorox.on('mouseover',bleachSwap);
 $clorox.on('mouseout',bleachReverse);
-
+$uzi.on ('mouseover',uziSwap);
+$uzi.on('mouseout',uziReverse);
 }
 
 
@@ -142,6 +152,7 @@ function thumbsdownClicked(){
 let currentImageId = images[Math.floor(Math.random()*images.length)];
 
        //
+       $(currentImageId).append('body');
        $(currentImageId).css("opacity", 1);
        $(currentImageId).addClass( "visible2" );
 
@@ -177,4 +188,14 @@ $(clorox).attr("src","assets/images/bleachcup.png");
 function bleachReverse() {
 console.log("hello");
 $(clorox).attr("src","assets/images/clorox2.png");
+}
+
+function uziSwap() {
+console.log("hello");
+$(uzi).attr("src","assets/images/explosionlaptop.gif");
+}
+
+function uziReverse() {
+console.log("hello");
+$(uzi).attr("src","assets/images/uzirotate.gif");
 }
