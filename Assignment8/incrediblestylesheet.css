@@ -1,0 +1,70 @@
+@keyframes expand {
+  0% {transform:scale(1);
+opacity: 100;
+  }
+
+  50% {transform: scale(1.5);
+  opacity: 50;}
+
+  100% {transform: scale(1);
+  opacity: 100;}
+
+}
+
+
+body {
+    background: url(https://images.unsplash.com/photo-1519677100203-a0e668c92439) no-repeat center;
+    background-size: cover;
+    height: 100vh;
+    cursor: none;
+}
+
+.spotlight {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.newspotlight {
+  height: 100%;
+  width: 100%;
+  animation: expand 1s linear;
+  background-image: radial-gradient(
+      circle,
+      transparent 160px,
+      rgba(0, 0, 0, 0.85) 200px
+  )
+
+}
+
+.oldspotlight {
+  height: 100%;
+  width: 100%;
+  background-image: radial-gradient(
+      circle,
+      transparent 160px,
+      rgba(0, 0, 0, 0.85) 200px
+  )
+
+}
+
+#swag {
+  position: absolute;
+  opacity: 0;
+
+}
+
+#swag:hover {
+  z-index: 5000;
+  opacity: 1;
+}
+
+#cool{
+    position: absolute;
+    opacity: 1;
+    animation: expand;
+  }
+
+  #fly {
+    position: absolute;
+  }
