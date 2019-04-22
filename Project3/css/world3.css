@@ -1,0 +1,29 @@
+body {padding: 0; margin: 0; overflow: hidden;}
+
+nav{
+  font-family: "Distro";
+  text-decoration: none;
+  position:absolute;
+  z-index: 100000;
+  color: red;
+  padding: 20px;
+  margin: 20px 20px 20px 20px;
+  font-size: 70px;
+  display: inline-block;
+  width: 5%;
+}
+
+
+a {
+  text-decoration: none;
+  color: lime;
+}
+
+a:visited{
+  color: lime;
+}
+
+a:hover{
+color: red;
+animation: spaceboots 0.8s linear infinite;
+}

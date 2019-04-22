@@ -1,0 +1,216 @@
+@keyframes fade {
+  0% {transform:scale(1);
+opacity: 100;
+  }
+
+  50% {transform: scale(0);
+  opacity: 0;}
+
+  100% {transform: scale(1);
+  opacity: 100;}
+
+}
+
+@keyframes spotlight {
+  0% {
+opacity: 100;
+transform:rotate(0deg);
+
+}
+50% {
+opacity: 0%;
+transform: rotate(180deg);}
+}
+
+100% {
+
+opacity: 100;
+transform: rotate(360deg);
+}
+
+@keyframes spaceboots {
+	0% { transform: translate(2px, 1px) rotate(0deg); }
+	10% { transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { transform: translate(-3px, 0px) rotate(1deg); }
+	30% { transform: translate(0px, 2px) rotate(0deg); }
+	40% { transform: translate(1px, -1px) rotate(1deg); }
+	50% { transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { transform: translate(-3px, 1px) rotate(0deg); }
+	70% { transform: translate(2px, 1px) rotate(-1deg); }
+	80% { transform: translate(-1px, -1px) rotate(1deg); }
+	90% { transform: translate(2px, 2px) rotate(0deg); }
+	100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@font-face {
+  font-family: "Distro";
+  src: url("../assets/DISTROM_.ttf") format("truetype");
+}
+
+body {
+
+    background-size: cover;
+    height: 100%;
+    cursor: none;
+}
+
+#backgroundoverlay{
+  position:absolute;
+  z-index:3000;
+  width: 100%;
+  height: 100%;
+}
+
+#running{
+  width: 500px;
+  height: 500px;
+  position: center center;
+  background-size: cover;
+  background-color: red;
+  z-index: 500;
+}
+
+
+#bg {
+  width:100%;
+  height: 100%;
+  position: absolute;
+  z-index: -10000;
+}
+
+.flies {
+  position:absolute;
+  z-index: 2000;
+  filter: hue-rotate(90deg);
+  animation: fade 2s linear;
+
+}
+
+.spotlight {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    animation: fade 1s linear;
+}
+
+.newspotlight {
+  position:absolute;
+  height: 100%;
+  width: 100%;
+  background-image: radial-gradient(
+      circle,
+      transparent 160px,
+      rgba(0, 0, 0, 1) 200px
+  );
+    animation: none 1s linear;
+
+}
+.newoldspotlight {
+  z-index:1000;
+  position:absolute;
+  height: 100%;
+  width: 100%;
+  transform:opacity(1);
+
+}
+
+
+.oldspotlight {
+z-index:6000;
+left: 9%;
+bottom: 5%;
+transform:scale(0.3);
+  position:absolute;
+  height:100%;
+  width:80%;
+    animation: spotlight 1s linear;
+
+}
+#oldspotlight {
+z-index:6000;
+left: 9%;
+bottom: 5%;
+transform:scale(0.3);
+  position:absolute;
+  height:100%;
+  width:80%;
+    animation: spotlight 1s linear;
+
+}
+
+#xray {
+  z-index: 4000;
+  position:absolute;
+  width: 100%;
+  height:100%;
+  margin: 0;
+  -webkit-mask-image: url("https://media1.giphy.com/media/GLW6WSDK8hhYY/giphy.gif");
+          mask-image: url("https://media2.giphy.com/media/VJcmPnKEeI2Pu/giphy.gif");
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 500px;
+          mask-size: 500px;
+  cursor: crosshair;
+  animation: 1s linear infinite;
+
+}
+
+#xraynotrack{
+  position:absolute;
+  width: 100%;
+  height:100%;
+  position:absolute;
+  transform: scale(1);
+  z-index:8000;
+  top: 25%;
+  left: 29%;
+  margin: 0;
+  -webkit-mask-image: url("../assets/zgzg9.png");
+          mask-image: url("https://media2.giphy.com/media/VJcmPnKEeI2Pu/giphy.gif");
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 700px;
+          mask-size: 800px;
+  cursor: crosshair;
+  animation: 1s linear infinite;
+
+}
+
+
+  #root5 {
+  position:absolute;
+  transform: scale(1);
+  z-index:-2000;
+  top: 25%;
+  left: 30%;
+
+  }
+
+
+  nav{
+    font-family: "Distro";
+    text-decoration: none;
+    position:absolute;
+    z-index: 100000;
+    color: red;
+    padding: 20px;
+    margin: 20px 20px 20px 20px;
+    font-size: 70px;
+    display: inline-block;
+    width: 5%;
+  }
+
+
+  a {
+    text-decoration: none;
+    color: lime;
+  }
+
+  a:visited{
+    color: lime;
+  }
+
+a:hover{
+  color: red;
+  animation: spaceboots 0.8s linear infinite;
+}
